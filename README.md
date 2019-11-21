@@ -5,8 +5,21 @@ API para Pizzaria utilizando Django Rest Framework
  - Django==2.2.5
  - djangorestframework==3.10.3
 
+## Conventional commits
+- **chore**: 	add Oyster build script    	// Pequenas alterações que não são novas funcionalidades.
+- **docs**: 	explain hat wobble          // Semelhante a uma wiki; documentações etc.
+- **feat**: 	add beta sequence           // Criação de Nova funcionalidade;
+- **fix**: 		remove error message        // Correção de bugs
+- **refactor**: share logic 4d3d3d3     	// Refatoração de um código
+- **style**: 	convert tabs to spaces     	// Alteração em estilos, formatação de código etc.
+- **test**: 	ensure that increment       // Criação de testes da sua aplicação
 
-## Modelagem
+> A mensagem do seu commit deve possuir até 7 palavras;
+> A descrição deve estar em inglês, em prol de objetividade;
+> O tempo verbal da mensagem deve estar no presente;
+> A mensagem tem que ser objetiva e rígida;
+
+## Modelagem do projeto
 
 ```Javascript
 Address {
