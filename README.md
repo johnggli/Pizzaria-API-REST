@@ -21,7 +21,7 @@ API para Pizzaria utilizando Django Rest Framework
 
 ## Modelagem do projeto
 
-```Javascript
+```json
 Address {
 	"street": "",
     "suite": "",
@@ -36,6 +36,13 @@ Client {
 	"address": Address()
 }
 
+Manager {
+	"name": "",
+	"cpf": "",
+	"salary": 0.0,
+	"email": ""
+}
+
 Employee {
 	"name": "",
 	"cpf": "",
@@ -43,11 +50,8 @@ Employee {
 	"manager": manager()
 }
 
-Manager {
-	"name": "",
-	"cpf": "",
-	"salary": 0.0,
-	"email": ""
+Progress {
+	"name": ""
 }
 
 Pizza {
@@ -57,15 +61,11 @@ Pizza {
 }
 
 Demand {
-	"date": 00-00-0000,
+	"created": 00-00-0000,
 	"client": Client(),
 	"employee": Employee(),
 	"pizza": Pizza(),
 	"progress": Progress()
-}
-
-Progress {
-	"name": ""
 }
 
 ```
