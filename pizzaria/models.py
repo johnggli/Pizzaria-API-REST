@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Address(models.Model):
@@ -9,6 +10,7 @@ class Address(models.Model):
 
 
 class Client(models.Model):
+    user = models.OneToOneField(User, models.CASCADE)
     name = models.CharField(max_length=255)
     email = models.EmailField()
     phone = models.CharField(max_length=12)
@@ -16,6 +18,7 @@ class Client(models.Model):
 
 
 class Manager(models.Model):
+    user = models.OneToOneField(User, models.CASCADE)
     name = models.CharField(max_length=255)
     cpf = models.CharField(max_length=11)
     salary = models.FloatField()
@@ -23,6 +26,7 @@ class Manager(models.Model):
 
 
 class Employee(models.Model):
+    user = models.OneToOneField(User, models.CASCADE)
     name = models.CharField(max_length=255)
     cpf = models.CharField(max_length=11)
     salary = models.FloatField()
