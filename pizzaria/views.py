@@ -7,6 +7,9 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from .models import *
 from .serializers import *
 
+from .permissions import *
+from rest_framework import permissions
+
 
 class ApiRoot(GenericAPIView):
     name = 'api-root'
@@ -28,11 +31,15 @@ class AddressList(ListCreateAPIView):
     queryset = Address.objects.all()
     serializer_class = AddressSerializer
 
+    permission_classes = (permissions.IsAuthenticated,)
+
 
 class AddressDetail(RetrieveUpdateDestroyAPIView):
     name = 'address-detail'
     queryset = Address.objects.all()
     serializer_class = AddressSerializer
+
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class ClientList(ListCreateAPIView):
@@ -40,11 +47,15 @@ class ClientList(ListCreateAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
 
+    permission_classes = (permissions.IsAuthenticated,)
+
 
 class ClientDetail(RetrieveUpdateDestroyAPIView):
     name = 'client-detail'
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
+
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class ManagerList(ListCreateAPIView):
@@ -52,11 +63,15 @@ class ManagerList(ListCreateAPIView):
     queryset = Manager.objects.all()
     serializer_class = ManagerSerializer
 
+    permission_classes = (permissions.IsAuthenticated,)
+
 
 class ManagerDetail(RetrieveUpdateDestroyAPIView):
     name = 'manager-detail'
     queryset = Manager.objects.all()
     serializer_class = ManagerSerializer
+
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class EmployeeList(ListCreateAPIView):
@@ -64,11 +79,15 @@ class EmployeeList(ListCreateAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
 
+    permission_classes = (permissions.IsAuthenticated,)
+
 
 class EmployeeDetail(RetrieveUpdateDestroyAPIView):
     name = 'employee-detail'
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class ProgressList(ListCreateAPIView):
@@ -76,11 +95,15 @@ class ProgressList(ListCreateAPIView):
     queryset = Progress.objects.all()
     serializer_class = ProgressSerializer
 
+    permission_classes = (permissions.IsAuthenticated,)
+
 
 class ProgressDetail(RetrieveUpdateDestroyAPIView):
     name = 'progress-detail'
     queryset = Progress.objects.all()
     serializer_class = ProgressSerializer
+
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class PizzaList(ListCreateAPIView):
@@ -88,11 +111,15 @@ class PizzaList(ListCreateAPIView):
     queryset = Pizza.objects.all()
     serializer_class = PizzaSerializer
 
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
 
 class PizzaDetail(RetrieveUpdateDestroyAPIView):
     name = 'pizza-detail'
     queryset = Pizza.objects.all()
     serializer_class = PizzaSerializer
+
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class DemandList(ListCreateAPIView):
@@ -100,8 +127,12 @@ class DemandList(ListCreateAPIView):
     queryset = Demand.objects.all()
     serializer_class = DemandSerializer
 
+    permission_classes = (permissions.IsAuthenticated,)
+
 
 class DemandDetail(RetrieveUpdateDestroyAPIView):
     name = 'demand-detail'
     queryset = Demand.objects.all()
     serializer_class = DemandSerializer
+
+    permission_classes = (permissions.IsAuthenticated,)
