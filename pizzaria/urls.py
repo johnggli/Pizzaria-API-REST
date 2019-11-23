@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from .views import *
 
 urlpatterns = [
@@ -17,4 +17,6 @@ urlpatterns = [
     path('pizza/<int:pk>', PizzaDetail.as_view(), name=PizzaDetail.name),
     path('demand', DemandList.as_view(), name=DemandList.name),
     path('demand/<int:pk>', DemandDetail.as_view(), name=DemandDetail.name),
+
+    path('api-auth/', include('rest_framework.urls')),
 ]

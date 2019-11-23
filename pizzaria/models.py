@@ -20,14 +20,15 @@ class Client(models.Model):
 class Manager(models.Model):
     user = models.OneToOneField(User, models.CASCADE)
     name = models.CharField(max_length=255)
+    email = models.EmailField()
     cpf = models.CharField(max_length=11)
     salary = models.FloatField()
-    email = models.EmailField()
 
 
 class Employee(models.Model):
     user = models.OneToOneField(User, models.CASCADE)
     name = models.CharField(max_length=255)
+    email = models.EmailField()
     cpf = models.CharField(max_length=11)
     salary = models.FloatField()
     manager = models.ForeignKey(Manager, on_delete=models.CASCADE, related_name='employers')
