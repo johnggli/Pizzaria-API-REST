@@ -48,7 +48,7 @@ class AddressList(ListCreateAPIView):
     queryset = Address.objects.all()
     serializer_class = AddressSerializer
 
-    permission_classes = (permissions.IsAuthenticated, ClientUnallowed,)
+    permission_classes = (permissions.IsAuthenticated, AddressPermissions,)
 
 
 class AddressDetail(RetrieveUpdateDestroyAPIView):
@@ -56,7 +56,7 @@ class AddressDetail(RetrieveUpdateDestroyAPIView):
     queryset = Address.objects.all()
     serializer_class = AddressSerializer
 
-    permission_classes = (permissions.IsAuthenticated, ClientUnallowed,)
+    permission_classes = (permissions.IsAuthenticated, AddressPermissions,)
 
 
 class ClientList(ListCreateAPIView):
@@ -64,7 +64,7 @@ class ClientList(ListCreateAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
 
-    permission_classes = (permissions.IsAuthenticated, ClientUnallowed,)
+    permission_classes = (permissions.IsAuthenticated, ClientPermissions,)
 
 
 class ClientDetail(RetrieveUpdateDestroyAPIView):
@@ -72,7 +72,7 @@ class ClientDetail(RetrieveUpdateDestroyAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
 
-    permission_classes = (permissions.IsAuthenticated, ClientUnallowed,)
+    permission_classes = (permissions.IsAuthenticated, ClientPermissions,)
 
 
 class ManagerList(ListCreateAPIView):
@@ -80,7 +80,7 @@ class ManagerList(ListCreateAPIView):
     queryset = Manager.objects.all()
     serializer_class = ManagerSerializer
 
-    permission_classes = (permissions.IsAuthenticated, IsAdminOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated, IsAdminOrReadOnly, ManagerPermissions,)
 
 
 class ManagerDetail(RetrieveUpdateDestroyAPIView):
@@ -88,7 +88,7 @@ class ManagerDetail(RetrieveUpdateDestroyAPIView):
     queryset = Manager.objects.all()
     serializer_class = ManagerSerializer
 
-    permission_classes = (permissions.IsAuthenticated, IsAdminOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated, IsAdminOrReadOnly, ManagerPermissions,)
 
 
 class EmployeeList(ListCreateAPIView):

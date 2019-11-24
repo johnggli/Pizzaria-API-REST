@@ -11,6 +11,38 @@ class IsAdminOrReadOnly(BasePermission):
             return request.user.is_staff
 
 
+class AddressPermissions(BasePermission):
+    def has_permission(self, request, view):
+        if request.method in SAFE_METHODS:
+            return True
+        else:
+            try:
+                # se o request.user for um Client, vai retornar False
+                clientEmail = Client.objects.get(email=request.user.email).email
+                return request.user.email != clientEmail
+            except Client.DoesNotExist:
+                # se não for um Client, vai retornar True
+                return True
+
+
+class ClientPermissions(BasePermission):
+    def has_permission(self, request, view):
+        try:
+            clientEmail = Client.objects.get(email=request.user.email).email
+            return request.user.email != clientEmail
+        except Client.DoesNotExist:
+            return True
+
+
+class ManagerPermissions(BasePermission):
+    def has_permission(self, request, view):
+        try:
+            clientEmail = Client.objects.get(email=request.user.email).email
+            return request.user.email != clientEmail
+        except Client.DoesNotExist:
+            return True
+
+
 class ClientUnallowed(BasePermission): # Client não permitido
     def has_permission(self, request, view):
         try:
