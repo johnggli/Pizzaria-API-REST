@@ -18,3 +18,15 @@ class IsAllowedToWrite(BasePermission):
             return request.user.email != clientEmail
         except Client.DoesNotExist:
             return True
+
+
+class IsClientOwn(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.method in SAFE_METHODS:
+            return obj.user == request.user
+        else:
+            try:
+                clientEmail = Client.objects.get(email=request.user.email).email
+                return request.user.email != clientEmail
+            except Client.DoesNotExist:
+                return True

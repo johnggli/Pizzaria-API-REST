@@ -32,7 +32,7 @@ class UserList(ListCreateAPIView):
     serializer_class = UserSerializer
     name = "user-list"
 
-    permission_classes = ()
+    permission_classes = (permissions.IsAdminUser,)
     
 
 class UserDetail(RetrieveUpdateDestroyAPIView):
@@ -40,7 +40,7 @@ class UserDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
     name = "user-detail"
 
-    permission_classes = ()
+    permission_classes = (permissions.IsAdminUser,)
 
 
 class AddressList(ListCreateAPIView):
@@ -72,7 +72,7 @@ class ClientDetail(RetrieveUpdateDestroyAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
 
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated, IsClientOwn,)
 
 
 class ManagerList(ListCreateAPIView):
