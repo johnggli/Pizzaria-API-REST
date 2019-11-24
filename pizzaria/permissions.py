@@ -73,7 +73,12 @@ class DemandListPermissions(BasePermission):
 class DemandDetailPermissions(BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in SAFE_METHODS:
-            return obj.client.user == request.user
+            try:
+                is_client = Client.objects.get(email=request.user.email)
+                if is_client:
+                    return obj.client.user == request.user
+            except Client.DoesNotExist:
+                return True
         else:
             try:
                 is_client = Client.objects.get(email=request.user.email)
