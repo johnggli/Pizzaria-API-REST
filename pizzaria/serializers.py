@@ -1,5 +1,12 @@
 from rest_framework.serializers import ModelSerializer, HyperlinkedModelSerializer
 from .models import *
+from rest_framework import serializers
+from django.contrib.auth.models import User
+
+class UserSerializer(HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['url', 'username', 'email']
 
 
 class AddressSerializer(HyperlinkedModelSerializer):
@@ -14,10 +21,16 @@ class ClientSerializer(HyperlinkedModelSerializer):
         fields = ('url', 'name', 'email', 'phone', 'address')
 
     def create(self, validated_data):
-        user_created = User.objects.create_user(username=validated_data['name'].split()[0],
+        user = User.objects.filter(email=validated_data['email'])
+        if user:
+            raise serializers.ValidationError("O email '" +
+                                              validated_data['email'] +
+                                              "' ja está cadastrado")
+        else:
+            user_created = User.objects.create_user(username=validated_data['name'].split()[0],
                                                 email=validated_data['email'],
                                                 password='ads2019')
-        return Client.objects.create(user=user_created, **validated_data)
+            return Client.objects.create(user=user_created, **validated_data)
 
 
 class ManagerSerializer(HyperlinkedModelSerializer):
@@ -26,10 +39,16 @@ class ManagerSerializer(HyperlinkedModelSerializer):
         fields = ('url', 'name', 'email', 'cpf', 'salary')
 
     def create(self, validated_data):
-        user_created = User.objects.create_user(username=validated_data['name'].split()[0],
+        user = User.objects.filter(email=validated_data['email'])
+        if user:
+            raise serializers.ValidationError("O email '" +
+                                              validated_data['email'] +
+                                              "' ja está cadastrado")
+        else:
+            user_created = User.objects.create_user(username=validated_data['name'].split()[0],
                                                 email=validated_data['email'],
                                                 password='ads2019')
-        return Manager.objects.create(user=user_created, **validated_data)
+            return Manager.objects.create(user=user_created, **validated_data)
 
 
 class EmployeeSerializer(HyperlinkedModelSerializer): # tem que fazer a permissao de "somente manager logado pode criar" pq se não ele não consegue o "pk" do manager
@@ -38,11 +57,17 @@ class EmployeeSerializer(HyperlinkedModelSerializer): # tem que fazer a permissa
         fields = ('url', 'name', 'email', 'cpf', 'salary')
 
     def create(self, validated_data):
-        manager = Manager.objects.get(pk=self.context['request'].user.pk)
-        user_created = User.objects.create_user(username=validated_data['name'].split()[0],
+        user = User.objects.filter(email=validated_data['email'])
+        if user:
+            raise serializers.ValidationError("O email '" +
+                                              validated_data['email'] +
+                                              "' ja está cadastrado")
+        else:
+            manager = Manager.objects.get(email=self.context['request'].user.email)
+            user_created = User.objects.create_user(username=validated_data['name'].split()[0],
                                                 email=validated_data['email'],
                                                 password='ads2019')
-        return Employee.objects.create(user=user_created, manager=manager, **validated_data)
+            return Employee.objects.create(user=user_created, manager=manager, **validated_data)
 
 
 class ProgressSerializer(HyperlinkedModelSerializer):

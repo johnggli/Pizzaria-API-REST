@@ -3,6 +3,10 @@ from .views import *
 
 urlpatterns = [
     path('', ApiRoot.as_view(), name=ApiRoot.name),
+
+    path('user', UserList.as_view(), name=UserList.name),
+    path('user/<int:pk>', UserDetail.as_view(), name=UserDetail.name),
+
     path('address', AddressList.as_view(), name=AddressList.name),
     path('address/<int:pk>', AddressDetail.as_view(), name=AddressDetail.name),
     path('client', ClientList.as_view(), name=ClientList.name),

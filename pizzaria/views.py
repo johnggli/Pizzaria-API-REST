@@ -16,6 +16,7 @@ class ApiRoot(GenericAPIView):
 
     def get(self, request, *args, **kwargs):
         return Response({
+            "user": reverse(UserList.name, request=request),
             "address": reverse(AddressList.name, request=request),
             "client": reverse(ClientList.name, request=request),
             "manager": reverse(ManagerList.name, request=request),
@@ -24,6 +25,22 @@ class ApiRoot(GenericAPIView):
             "pizza": reverse(PizzaList.name, request=request),
             "demand": reverse(DemandList.name, request=request),
         }, status=status.HTTP_200_OK)
+
+
+class UserList(ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    name = "user-list"
+
+    permission_classes = ()
+    
+
+class UserDetail(RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    name = "user-detail"
+
+    permission_classes = ()
 
 
 class AddressList(ListCreateAPIView):
@@ -47,7 +64,7 @@ class ClientList(ListCreateAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
 
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated, IsAllowedToWrite)
 
 
 class ClientDetail(RetrieveUpdateDestroyAPIView):
