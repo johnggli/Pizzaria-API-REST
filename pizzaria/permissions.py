@@ -18,8 +18,9 @@ class AddressPermissions(BasePermission):
         else:
             try:
                 # se o request.user for um Client, vai retornar False
-                clientEmail = Client.objects.get(email=request.user.email).email
-                return request.user.email != clientEmail
+                is_client = Client.objects.get(email=request.user.email)
+                if is_client:
+                    return False
             except Client.DoesNotExist:
                 # se não for um Client, vai retornar True
                 return True
@@ -28,8 +29,9 @@ class AddressPermissions(BasePermission):
 class ClientPermissions(BasePermission):
     def has_permission(self, request, view):
         try:
-            clientEmail = Client.objects.get(email=request.user.email).email
-            return request.user.email != clientEmail
+            is_client = Client.objects.get(email=request.user.email)
+            if is_client:
+                return False
         except Client.DoesNotExist:
             return True
 
@@ -37,21 +39,48 @@ class ClientPermissions(BasePermission):
 class ManagerPermissions(BasePermission):
     def has_permission(self, request, view):
         try:
-            clientEmail = Client.objects.get(email=request.user.email).email
-            return request.user.email != clientEmail
+            is_client = Client.objects.get(email=request.user.email)
+            if is_client:
+                return False
         except Client.DoesNotExist:
             return True
 
 
-class ClientUnallowed(BasePermission): # Client não permitido
+class EmployeePermissions(BasePermission):
+    def has_permission(self, request, view):
+        if request.method in SAFE_METHODS:
+            return True
+        else:
+            # somente Manager e Admin possuem permissão de escrita
+            try:
+                is_manager = Manager.objects.get(email=request.user.email)
+                if is_manager:
+                    return True
+            except Manager.DoesNotExist:
+                return request.user.is_staff
+
+
+class DemandListPermissions(BasePermission):
     def has_permission(self, request, view):
         try:
-            # se o request.user for um Client, vai retornar False
-            clientEmail = Client.objects.get(email=request.user.email).email
-            return request.user.email != clientEmail
+            is_client = Client.objects.get(email=request.user.email)
+            if is_client:
+                return False
         except Client.DoesNotExist:
-            # se não for um Client, vai retornar True
             return True
+
+
+class DemandDetailPermissions(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.method in SAFE_METHODS:
+            return obj.client.user == request.user
+        else:
+            try:
+                is_client = Client.objects.get(email=request.user.email)
+                if is_client:
+                    return False
+            except Client.DoesNotExist:
+                return True
 
 
 # class IsClientOwn(BasePermission):

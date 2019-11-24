@@ -96,7 +96,7 @@ class EmployeeList(ListCreateAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
 
-    permission_classes = (permissions.IsAuthenticated, ClientUnallowed,)
+    permission_classes = (permissions.IsAuthenticated, EmployeePermissions,)
 
 
 class EmployeeDetail(RetrieveUpdateDestroyAPIView):
@@ -104,7 +104,7 @@ class EmployeeDetail(RetrieveUpdateDestroyAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
 
-    permission_classes = (permissions.IsAuthenticated, ClientUnallowed,)
+    permission_classes = (permissions.IsAuthenticated, EmployeePermissions,)
 
 
 class ProgressList(ListCreateAPIView):
@@ -144,7 +144,7 @@ class DemandList(ListCreateAPIView):
     queryset = Demand.objects.all()
     serializer_class = DemandSerializer
 
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated, DemandListPermissions,)
 
 
 class DemandDetail(RetrieveUpdateDestroyAPIView):
@@ -152,4 +152,4 @@ class DemandDetail(RetrieveUpdateDestroyAPIView):
     queryset = Demand.objects.all()
     serializer_class = DemandSerializer
 
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated, DemandDetailPermissions,)
