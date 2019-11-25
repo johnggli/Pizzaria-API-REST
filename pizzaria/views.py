@@ -10,6 +10,9 @@ from .serializers import *
 from .permissions import *
 from rest_framework import permissions
 
+from rest_framework import filters
+from django_filters import NumberFilter, DateTimeFilter, AllValuesFilter
+
 
 class ApiRoot(GenericAPIView):
     name = 'api-root'
@@ -96,6 +99,10 @@ class EmployeeList(ListCreateAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
 
+    filter_fields = ('salary',) # filtra por salário
+    search_fields = ('^name',) # busca funcionários cujo nome começa com a palavra pesquisada
+    ordering_fields = ('name', 'salary',) # ordena por nome ou salário, crescente ou decrescente
+
     permission_classes = (permissions.IsAuthenticated, EmployeePermissions,)
 
 
@@ -127,6 +134,10 @@ class PizzaList(ListCreateAPIView):
     name = 'pizza-list'
     queryset = Pizza.objects.all()
     serializer_class = PizzaSerializer
+
+    filter_fields = ('price',) # filtra por preço
+    search_fields = ('^name',) # busca pizzas que começam com a palavra pesquisada
+    ordering_fields = ('name', 'price',)
 
     permission_classes = (IsAdminOrReadOnly,)
 
