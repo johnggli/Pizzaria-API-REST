@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'pizzaria',
     'crispy_forms',
     'django_filters',
+    'rest_framework_swagger',
 ]
 
 
@@ -56,6 +57,7 @@ REST_FRAMEWORK = {
         'rest_framework.filters.SearchFilter',
         'rest_framework.filters.OrderingFilter',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 
 MIDDLEWARE = [
