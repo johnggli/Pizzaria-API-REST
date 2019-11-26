@@ -31,7 +31,7 @@ class Employee(models.Model):
     email = models.EmailField()
     cpf = models.CharField(max_length=11)
     salary = models.FloatField()
-    manager = models.ForeignKey(Manager, on_delete=models.CASCADE, related_name='employers')
+    manager = models.ForeignKey(Manager, on_delete=models.CASCADE, related_name='employees')
 
 
 class Progress(models.Model):
@@ -46,7 +46,7 @@ class Pizza(models.Model):
 
 class Demand(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    client = models.OneToOneField(Client, models.CASCADE)
-    employee = models.OneToOneField(Employee, models.CASCADE)
-    pizza = models.OneToOneField(Pizza, models.CASCADE)
-    progress = models.OneToOneField(Progress, models.CASCADE)
+    client = models.OneToOneField(Client, models.CASCADE, related_name='client_demands')
+    employee = models.OneToOneField(Employee, models.CASCADE, related_name='employee_demands')
+    pizza = models.OneToOneField(Pizza, models.CASCADE, related_name='pizza_demands')
+    progress = models.OneToOneField(Progress, models.CASCADE, related_name='progress_demands')

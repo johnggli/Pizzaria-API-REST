@@ -51,7 +51,7 @@ class ManagerSerializer(HyperlinkedModelSerializer):
             return Manager.objects.create(user=user_created, **validated_data)
 
 
-class EmployeeSerializer(HyperlinkedModelSerializer): # tem que fazer a permissao de "somente manager logado pode criar" pq se não ele não consegue o "pk" do manager
+class EmployeeSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = Employee
         fields = ('url', 'name', 'email', 'cpf', 'salary')
@@ -86,3 +86,10 @@ class DemandSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = Demand
         fields = '__all__'
+
+
+class ManagerEmployeeSerializer(HyperlinkedModelSerializer):
+    employees = EmployeeSerializer(many=True, read_only=True)
+    class Meta:
+        model = Manager
+        fields = ('url', 'name', 'employees',)

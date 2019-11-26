@@ -86,3 +86,18 @@ class DemandDetailPermissions(BasePermission):
                     return False
             except Client.DoesNotExist:
                 return True
+
+    
+class IsAdmin(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_staff
+
+
+class IsManagerOrAdmin(BasePermission):
+    def has_permission(self, request, view):
+        try:
+            is_manager = Manager.objects.get(email=request.user.email)
+            if is_manager:
+                return True
+        except Manager.DoesNotExist:
+            return request.user.is_staff
