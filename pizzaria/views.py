@@ -205,3 +205,71 @@ class EmployeeDemands(APIView):
             status_list.append(employee_status)
         
         return Response(status_list, status=status.HTTP_200_OK)
+
+
+class ClientDemands(APIView):
+    name = 'client-demands'
+    permission_classes = (permissions.IsAuthenticated, IsManagerOrAdmin,)
+
+    def get(self, request, format=None):
+        clients = Client.objects.all()
+        status_list = []
+        
+        for client in clients:
+            client_status = {}
+            client_demands = []
+
+            for demand in Demand.objects.filter(client=client.pk):
+                data = {}
+                data['data_do_pedido'] = demand.created
+                data['atendente'] = demand.employee.name
+                data['pizza'] = demand.pizza.name
+                data['status'] = demand.progress.name
+                client_demands.append(data)
+
+
+            client_status['pk'] = client.pk
+            client_status['name'] = client.name
+            client_status['total_de_pedidos'] = len(client_demands)
+            client_status['pedidos'] = client_demands
+            
+            status_list.append(client_status)
+        
+        return Response(status_list, status=status.HTTP_200_OK)
+
+
+class ClientDemandsDetail(APIView):
+    name = 'client-demands-detail'
+    permission_classes = (permissions.IsAuthenticated, IsManagerOrAdmin,)
+
+    def get_object_by_pk(self, pk):
+        try:
+            return Client.objects.get(pk=pk)
+        except Exception:
+            return None
+
+    def get(self, request, pk, format=None):
+        client = self.get_object_by_pk(pk)
+        if client:
+            # import pdb; pdb.set_trace()
+            demands = client.client_demands.all()
+            client_demands = []
+            response = {}
+
+            for demand in demands:
+                data = {}
+                data['data_do_pedido'] = demand.created
+                data['atendente'] = demand.employee.name
+                data['pizza'] = demand.pizza.name
+                data['status'] = demand.progress.name
+                client_demands.append(data)
+
+            response['cliente'] = client.name
+            response['Contato'] = client.phone
+            response['email'] = client.email
+            response['total_de_pedidos'] = len(client_demands)
+            response['pedidos'] = client_demands
+                
+            return Response(response, status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)

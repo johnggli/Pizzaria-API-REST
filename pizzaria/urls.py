@@ -28,6 +28,8 @@ urlpatterns = [
     
     path('manager-employees/', ManagerEmployeeList.as_view(), name=ManagerEmployeeList.name),
     path('employee-demands/', EmployeeDemands.as_view(), name=EmployeeDemands.name),
+    path('client-demands/', ClientDemands.as_view(), name=ClientDemands.name),
+    path('client-demands/<int:pk>', ClientDemandsDetail.as_view(), name=ClientDemandsDetail.name),
 
     path('api-auth/', include('rest_framework.urls')),
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
