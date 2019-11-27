@@ -46,7 +46,7 @@ class Pizza(models.Model):
 
 class Demand(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    client = models.OneToOneField(Client, models.CASCADE, related_name='client_demands')
-    employee = models.OneToOneField(Employee, models.CASCADE, related_name='employee_demands')
-    pizza = models.OneToOneField(Pizza, models.CASCADE, related_name='pizza_demands')
-    progress = models.OneToOneField(Progress, models.CASCADE, related_name='progress_demands')
+    client = models.ForeignKey(Client, models.CASCADE, related_name='client_demands')
+    employee = models.ForeignKey(Employee, models.CASCADE, related_name='employee_demands')
+    pizza = models.ForeignKey(Pizza, models.CASCADE, related_name='pizza_demands')
+    progress = models.ForeignKey(Progress, models.CASCADE, related_name='progress_demands')
