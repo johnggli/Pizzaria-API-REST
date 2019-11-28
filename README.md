@@ -1,24 +1,16 @@
 # Pizzaria-API-REST
-API para Pizzaria utilizando Django Rest Framework
 
-Pizzaria-API-REST tem por objetivo facilitar o cadastro de clientes e facilitar os controle dos pedido de pizzas realizados por parte dos clientes. Projeto desenvolvido como projeto de avaliação da disciplina de programação para a internet 2, ministrada por Ely da Silva Miranda.
+API para Pizzaria utilizando Django Rest Framework.
 
-## Alunos
+Pizzaria-API-REST tem por objetivo facilitar o cadastro de clientes e o controle dos pedido de pizzas realizados. Projeto desenvolvido para avaliação da disciplina de programação para a internet 2, ministrada por Ely da Silva Miranda.
 
-<div style="display: flex; flex-direction: row; justify-content: space-evenly; flex-wrap: wrap;">
+## Devs
 
-<div style="display: flex; flex-direction: column; align-items: center;">
-<img width="200" style="border-radius: 50%;" src="https://avatars0.githubusercontent.com/u/43749971?s=460&v=4"/>
+<img width="200" src="https://avatars0.githubusercontent.com/u/43749971?s=460&v=4"/>
 <h3><a href="https://github.com/JohnEmerson1406">John Emerson</a></h3>
-</div>
 
-<div style="display: flex; flex-direction: column; align-items: center;">
-<img width="200" style="border-radius: 50%;" src="https://avatars3.githubusercontent.com/u/36716898?s=460&v=4"/>
-<h3><a href="https://github.com/pedrohenriquedevbr">Pedro Henrique</a></h3>
-</div>
-
-</div>
-
+<img width="200" src="https://avatars3.githubusercontent.com/u/36716898?s=460&v=4"/>
+<h3><a href="https://github.com/pedrohenriquedevbr">PedroHenrique</a></h3>
 
 ## Requisitos
  - Django==2.2.5
@@ -29,15 +21,27 @@ Pizzaria-API-REST tem por objetivo facilitar o cadastro de clientes e facilitar 
  - djangorestframework-simplejwt==4.3.0
 
 
-## Acompanhe a apresentação do desenvolvimento com o sistema em funcionamento no seu computador.
+## Acompanhe a apresentação do desenvolvimento com o sistema rodando no seu computador.
 
-Antes de iniciar a instalação certifique-se que possui o python>=3.5 instalado no seu computador.
+Antes de iniciar a instalação certifique-se de que possui o python>=3.5 instalado no seu computador.
 
-### Instalação
- - Faça o clone ou download do projeto no seu computador.
- - instale os requerimentos para rodar a aplicação com o comando: 		pip install requirements.txt
+### Instalação da aplicação
+ - Faça o clone ou o download do projeto do github no seu computador.
+ - instale os requerimentos necessários para rodar a aplicação com o comando: pip install requirements.txt
  - realize as migrações com o conando: python manage.py migrate
- - e finalmente coloque para rodas: python manage.py runserver
+ - e finalmente inicialize o servidor com o comando: python manage.py runserver
+ 
+
+## Sobre o desenvolvimento
+
+O desenvolvimento do projeto foi realizado em dupla, os envolvidos são:
+John Emerson e Pedro Henrique.
+
+ - Organização no desenvolvimento
+	 + Trello: Para facilitar o desenvolvimento das funcionalidades, utilizamos o trello, dessa forma podemos verificar o que precisa ser feito, o que está sendo feito e o que já foi concluído.
+ - Conventional commits
+	 + O **conventional commits** facilita o entendimento do que cada commit significa, forçando os colaboradores do projeto a descrever da melhor forma possível o que foi desenvolvido no commit em questão.
+	 + Acompanhe com mais detalhes o funcionamento do **conventional commits**, na parte final dessa leitura.
 
 
 ## Modelagem do projeto
