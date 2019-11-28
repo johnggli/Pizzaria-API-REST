@@ -46,6 +46,9 @@ John Emerson e Pedro Henrique.
 
 ## Modelagem do projeto
 
+![pizzaria-api](https://user-images.githubusercontent.com/36716898/69767567-ac61ad00-115b-11ea-8b79-faa79e8997db.png)
+
+
 ```json
 Address {
 	"street": "",
@@ -72,6 +75,7 @@ Employee {
 	"name": "",
 	"cpf": "",
 	"salary": 0.0,
+	"email": "",
 	"manager": manager()
 }
 
