@@ -28,7 +28,7 @@ Antes de iniciar a instalação certifique-se de que possui o python>=3.5 instal
 ### Instalação da aplicação
  - Faça o clone ou o download do projeto do github no seu computador.
  - instale os requerimentos necessários para rodar a aplicação com o comando: pip install requirements.txt
- - realize as migrações com o conando: python manage.py migrate
+ - realize as migrações com o comando: python manage.py migrate
  - e finalmente inicialize o servidor com o comando: python manage.py runserver
  
 
@@ -52,9 +52,9 @@ John Emerson e Pedro Henrique.
 ```json
 Address {
 	"street": "",
-    "suite": "",
-    "city": "",
-    "zipcode": ""
+    	"suite": "",
+    	"city": "",
+    	"zipcode": ""
 }
 
 Client {
