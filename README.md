@@ -99,6 +99,42 @@ Demand {
 
 ```
 
+## Endpoints disponíveis
+
+| uri 										| Funcionalidade |
+|:---:										|:----------------|
+| www.hostname.exemplo/user 				| Listagem e cadastro de usuários |
+| www.hostname.exemplo/user/1 				| acesso aos dados de um usuários específico  |
+|											| atualização e exclusão de dados de acordo com o ID passado |
+| www.hostname.exemplo/address/ 			| Listagem e cadastro de endereços |
+| www.hostname.exemplo/address/1 			| acesso aos dados de um endereço específico |
+|											| atualização e exclusão de dados de acordo com o ID passado |
+| www.hostname.exemplo/client/ 				| Listagem e cadastro de clientes |
+| www.hostname.exemplo/client/1 			| acesso aos dados de um cliente específico |
+|											| atualização e exclusão de dados de acordo com o ID passado |
+| www.hostname.exemplo/manager/ 			| Listagem e cadastro de gerentes |
+| www.hostname.exemplo/manager/1 			| acesso aos dados de um gerente específico |
+|											| atualização e exclusão de dados de acordo com o ID passado |
+| www.hostname.exemplo/employee/ 			| Listagem e cadastro de funcionários |
+| www.hostname.exemplo/employee/1 			| acesso aos dados de um funcionário específico |
+|											| atualização e exclusão de dados de acordo com o ID passado |
+| www.hostname.exemplo/progress/ 			| Listagem e cadastro de progressos |
+| www.hostname.exemplo/progress/1 			| acesso aos dados de um progresso específico |
+|											| atualização e exclusão de dados de acordo com o ID passado |
+| www.hostname.exemplo/pizza/ 				| Listagem e cadastro de pizzas |
+| www.hostname.exemplo/pizza/1 				| acesso aos dados de um pizza específica |
+|											| atualização e exclusão de dados de acordo com o ID passado |
+| www.hostname.exemplo/demand/ 				| Listagem e cadastro de pedidos |
+| www.hostname.exemplo/demand/1 			| acesso aos dados de um pedido específico |
+|											| atualização e exclusão de dados de acordo com o ID passado |
+| www.hostname.exemplo/manager-employees/ 	| Listagem de todos os gerentes e dos funcionários subordinados ao mesmo |
+| www.hostname.exemplo/employee-demands/ 	| Listagem de todos os funcionários e da quantidade de pedidos recebidos |
+| www.hostname.exemplo/client-demands/	 	| Listagem de todos os clientes, total de pedidos e lista de pedidos |
+| www.hostname.exemplo/client-demands/1 	| Listagem de todos os pedidos de um cliente especícifico |
+| www.hostname.exemplo/api-auth// 			| Login baseado em sessão |
+| www.hostname.exemplo/api/token/ 			| Login baseado em token JWT (JSON Web Token) |
+| www.hostname.exemplo/api/token/refresh/ 	| Atualiza token JWT |
+
 
 ## Funcionalidades
 
@@ -108,10 +144,10 @@ Demand {
 4. Funcionário e gerente altera o andamento do pedido
 5. Somente o gerente pode criar sabores de pizzas, porém todos podem ter acesso as pizzas cadastradas
 6. geração de relatórios
-	1. Funcionário pode verificar o ultimo pedido de um cliente
-	2. Funcionário pode verificar todos os pedidos atendidos por ele
-	3. Gerente pode ver qual é o cliente que faz mais pedidos
-	4. Gerente pode verificar qual vendedor mais vende
+	1. Gerente visualiza lista de funcionários subordinados
+	2. Gerente visualiza total de pedidos atendidos por funcionários subordinados
+	3. Gerente visualiza lista de pedidos realizados por clientes
+	4. Gerente visualiza lista de pedidos de um cliente específico
 
 
 ## Conventional commits
