@@ -12,6 +12,13 @@ Pizzaria-API-REST tem por objetivo facilitar o cadastro de clientes e o controle
 <img width="200" src="https://avatars3.githubusercontent.com/u/36716898?s=460&v=4"/>
 <h3><a href="https://github.com/pedrohenriquedevbr">PedroHenrique</a></h3>
 
+## Apresentação
+
+<img width="40%" src="https://www.youtube.com/about/static/svgs/icons/brand-resources/YouTube-logo_monochrome_light.svg?cache=4f585a3" />
+
+Clique no link para assistir o vídeo no YouTube,
+[Apresentação do projeto.](https://youtu.be/Ou_5yLHIq6E)
+
 ## Requisitos
  - Django==2.2.5
  - djangorestframework==3.10.3
@@ -27,7 +34,7 @@ Antes de iniciar a instalação certifique-se de que possui o python>=3.5 instal
 
 ### Instalação da aplicação
  - Faça o clone ou o download do projeto do github no seu computador.
- - instale os requerimentos necessários para rodar a aplicação com o comando: pip install requirements.txt
+ - instale os requerimentos necessários para rodar a aplicação com o comando: pip install -r requirements.txt
  - realize as migrações com o comando: python manage.py migrate
  - e finalmente inicialize o servidor com o comando: python manage.py runserver
  
